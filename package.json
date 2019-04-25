@@ -1,0 +1,31 @@
+{
+  "name": "sls-examples",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage --silent"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.441.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "serverless-http": "1.10.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.3",
+    "babel-jest": "^24.7.1",
+    "jest": "^24.7.1",
+    "serverless-domain-manager": "^3.2.1",
+    "serverless-dynamodb-local": "^0.2.37",
+    "serverless-offline": "^4.9.4",
+    "serverless-webpack": "^5.2.0",
+    "webpack": "^4.30.0",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
