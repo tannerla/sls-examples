@@ -1,5 +1,26 @@
 service: sls-examples
 
+plugins:
+  - serverless-webpack
+  - serverless-domain-manager
+  - serverless-dynamodb-local
+  - serverless-offline
+
+custom:
+  customDomain:
+    domainName: api.leontanner.dev
+    stage: ${self:provider.stage}
+    basePath: ""
+    certificateName: "leontanner.dev"
+    createRoute53Record: true
+  webpack:
+  webpackConfig: ./webpack.config.js
+  includeModules: true
+  tableName: "users-table-${self:provider.stage}"
+  dynamodb:
+    start:
+      migrate: true
+
 provider:
   name: aws
   runtime: nodejs8.10
@@ -19,32 +40,13 @@ provider:
   environment:
     USERS_TABLE: ${self:custom.tableName}
 
-custom:
-  customDomain:
-    domainName: api.leontanner.dev
-    stage: ${self:provider.stage}
-    basePath: ""
-    certificateName: "leontanner.dev"
-    createRoute53Record: true
-  # webpack:
-    # webpackConfig: ./webpack.config.js
-    # includeModules: true
-  tableName: "users-table-${self:provider.stage}"
-  dynamodb:
-    start:
-      migrate: true
-
-plugins:
-  - serverless-domain-manager
-  # - serverless-webpack
-  - serverless-dynamodb-local
-  - serverless-offline
-
 functions:
   hello:
     handler: index.handler
     events:
-      - http: GET /
+        - http:
+            path: /
+            method: get
   bye:
     handler: index.handler
     events:

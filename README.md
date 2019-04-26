@@ -13,7 +13,8 @@ Example repo of Serverless Framework offering a variety of APIs via AWS, using t
 Uses:
 
 - Nodejs8.10 runtime
-- ES6 support
+- ES6 support via Serverless
+  - Webpack/Babel transpiling allowing exports to run in Lambda
 - Jest for testing
 - offline development supported (including DynamoDB locally)
 

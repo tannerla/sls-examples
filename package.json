@@ -1,7 +1,7 @@
 {
   "name": "sls-examples",
   "version": "0.1.0",
-  "description": "",
+  "description": "Example of Serverless Framework with Node, ES6, AWS, local dev",
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage --silent"
@@ -13,12 +13,15 @@
     "aws-sdk": "^2.441.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "serverless-http": "1.10.1"
+    "serverless-http": "1.10.1",
+    "source-map-support": "^0.5.12"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.3",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-source-map-support": "^2.0.1",
     "babel-jest": "^24.7.1",
     "jest": "^24.7.1",
     "serverless-domain-manager": "^3.2.1",

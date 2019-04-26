@@ -24,6 +24,7 @@ app.get("/", function(req, res) {
 });
 
 app.get("/bye", function(req, res) {
+  console.log("in bye")
   res.send("goodbye!");
 });
 
@@ -76,4 +77,4 @@ app.post("/users", function(req, res) {
   });
 });
 
-module.exports.handler = serverless(app);
+export const handler = serverless(app);

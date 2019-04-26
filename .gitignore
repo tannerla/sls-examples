@@ -1,6 +1,7 @@
 # Servewrless Framework
 /.dynamodb
 /.serverless
+/.webpack
 
 # Logs
 logs
