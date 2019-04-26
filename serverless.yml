@@ -14,8 +14,8 @@ custom:
     certificateName: "leontanner.dev"
     createRoute53Record: true
   webpack:
-  webpackConfig: ./webpack.config.js
-  includeModules: true
+    webpackConfig: ./webpack.config.js
+    includeModules: true
   tableName: "users-table-${self:provider.stage}"
   dynamodb:
     start:
@@ -42,21 +42,21 @@ provider:
 
 functions:
   hello:
-    handler: index.handler
+    handler: src/functions/index.handler
     events:
         - http:
             path: /
             method: get
   bye:
-    handler: index.handler
+    handler: src/functions/index.handler
     events:
       - http: "GET /bye"
   getUser:
-    handler: index.handler
+    handler: src/functions/index.handler
     events:
       - http: "GET /users/{proxy+}"
   createUser:
-    handler: index.handler
+    handler: src/functions/index.handler
     events:
       - http: "POST /users"
 
