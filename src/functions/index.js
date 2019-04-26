@@ -1,14 +1,12 @@
-import 'source-map-support/register';
-
-const serverless = require("serverless-http");
-const bodyParser = require("body-parser");
-const express = require("express");
-const app = express();
-const AWS = require("aws-sdk");
-
-const USERS_TABLE = process.env.USERS_TABLE;
+import serverless from "serverless-http";
+import bodyParser from "body-parser";
+import express from "express";
+import AWS from "aws-sdk";
 
 const IS_OFFLINE = process.env.IS_OFFLINE;
+const USERS_TABLE = process.env.USERS_TABLE;
+
+// DB config
 let dynamoDb;
 if (IS_OFFLINE === "true") {
   dynamoDb = new AWS.DynamoDB.DocumentClient({
@@ -19,18 +17,19 @@ if (IS_OFFLINE === "true") {
   dynamoDb = new AWS.DynamoDB.DocumentClient();
 }
 
+// App init/config
+const app = express();
 app.use(bodyParser.json({ strict: false }));
 
+// Routes
 app.get("/", function(req, res) {
-  res.send("Hello World! 123");
+  res.send("Hi!");
 });
 
 app.get("/bye", function(req, res) {
-  console.log("in bye")
-  res.send("goodbye!");
+  res.send("Bye!");
 });
 
-// Get User endpoint
 app.get("/users/:userId", function(req, res) {
   const params = {
     TableName: USERS_TABLE,

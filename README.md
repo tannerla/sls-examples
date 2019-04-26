@@ -43,6 +43,18 @@ sls dynamodb install
 sls offline start
 ```
 
+DB backed APIs
+
+```bash
+# create a user
+curl -H "Content-Type: application/json" -X POST ${domain}/users -d '{"userId": "123", "name": "John Doe"}'
+=> {"userId":"123","name":"John Doe"}
+
+# get user by ID
+curl -H "Content-Type: application/json" -X GET ${domain}/users/123
+=> {"userId":"123","name":"John Doe"}
+```
+
 ## License
 
 MIT
