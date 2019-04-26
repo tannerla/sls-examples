@@ -1,6 +1,6 @@
-import serverless from "serverless-http";
+import express from "serverless-express/express";
+import handler from "serverless-express/handler";
 import bodyParser from "body-parser";
-import express from "express";
 import AWS from "aws-sdk";
 
 const IS_OFFLINE = process.env.IS_OFFLINE;
@@ -78,4 +78,4 @@ app.post("/users", function(req, res) {
   });
 });
 
-export const handler = serverless(app);
+export const api = handler(app);

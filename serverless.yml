@@ -1,6 +1,7 @@
 service: sls-examples
 
 plugins:
+  - serverless-express
   - serverless-webpack
   - serverless-domain-manager
   - serverless-dynamodb-local
@@ -48,21 +49,21 @@ provider:
 # note the mix of path options, for reference only
 functions:
   hi:
-    handler: ${self:custom.functionsPath}/index.handler
+    handler: ${self:custom.functionsPath}/index.api
     events:
       - http:
           path: /
           method: get
   bye:
-    handler: ${self:custom.functionsPath}/index.handler
+    handler: ${self:custom.functionsPath}/index.api
     events:
       - http: "GET /bye"
   getUser:
-    handler: ${self:custom.functionsPath}/index.handler
+    handler: ${self:custom.functionsPath}/index.api
     events:
       - http: "GET /users/{proxy+}"
   createUser:
-    handler: ${self:custom.functionsPath}/index.handler
+    handler: ${self:custom.functionsPath}/index.api
     events:
       - http: "POST /users"
 
