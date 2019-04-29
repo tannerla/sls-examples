@@ -9,6 +9,9 @@ Example repo of Serverless Framework offering a variety of APIs via AWS, using t
 - Cloudwatch Metrics & Alarms
   - [Serverless Ops 101 - Using CloudWatch Metrics & Alarms with Serverless Functions](https://serverless.com/blog/serverless-ops-metrics/)
   - [Serverless Ops 102 - CloudWatch Logs and Centralized Logging with AWS Lambda](https://serverless.com/blog/serverless-ops-logs/)
+- Warm Lamdas to avoid cold starts
+  - [Keeping Functions Warm - How To Fix AWS Lambda Cold Start Issues](https://serverless.com/blog/keep-your-lambdas-warm/)
+  - Note that `webpack.config.js` has customisations to allow `serverless-webpack` and `serverless-plugin-warmup` to work side by side. See comments around `plugins` and `entries`.
 
 Uses:
 
@@ -31,7 +34,7 @@ sls deploy
 sls deploy -f <function-name>
 ```
 
-Uses custom domain and certificate (from ACM). Base path is mapped via `deploy`.
+Uses custom domain and certificate (from ACM). Base path is mapped during `sls deploy` process.
 
 Run locally
 

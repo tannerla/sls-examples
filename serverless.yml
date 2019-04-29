@@ -3,6 +3,7 @@ service: sls-examples
 plugins:
   - serverless-express
   - serverless-webpack
+  - serverless-plugin-warmup
   - serverless-domain-manager
   - serverless-dynamodb-local
   - serverless-offline
@@ -19,6 +20,11 @@ custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
+  warmup:
+    enabled: false # Kill switch
+    events:
+      # Run WarmUp every 5 minutes Mon-Fri between 8:00am and 5:55pm (UTC)
+      - schedule: 'cron(0/5 8-17 ? * MON-FRI *)'
   # local dynamodb config
   dynamodb:
     start:
@@ -32,7 +38,8 @@ provider:
   runtime: nodejs8.10
   stage: dev
   region: eu-west-2
-  iamRoleStatements: # dynamoDB IAM role
+  iamRoleStatements:
+    # dynamoDB
     - Effect: Allow
       Action:
         - dynamodb:Query
@@ -43,6 +50,11 @@ provider:
         - dynamodb:DeleteItem
       Resource:
         - { "Fn::GetAtt": ["UsersDynamoDBTable", "Arn"] }
+    # warmup
+    - Effect: 'Allow'
+      Action:
+        - 'lambda:InvokeFunction'
+      Resource: "*"
   environment:
     USERS_TABLE: ${self:custom.tableNameUsers}
 
@@ -54,6 +66,7 @@ functions:
       - http:
           path: /
           method: get
+    warmup: false
   bye:
     handler: ${self:custom.functionsPath}/index.api
     events:
