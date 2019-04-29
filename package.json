@@ -12,6 +12,7 @@
   "dependencies": {
     "aws-sdk": "^2.441.0",
     "body-parser": "^1.18.3",
+    "compression": "^1.7.4",
     "express": "^4.16.4",
     "serverless-express": "^2.0.11",
     "source-map-support": "^0.5.12"

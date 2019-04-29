@@ -1,4 +1,5 @@
 import express from "express";
+import compression from "compression";
 import bodyParser from "body-parser";
 import AWS from "aws-sdk";
 
@@ -18,6 +19,7 @@ if (IS_OFFLINE === "true") {
 
 // App init/config
 const app = express();
+app.use(compression());
 app.use(bodyParser.json({ strict: false }));
 
 // Routes
